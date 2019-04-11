@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title>Customer Support</title>
+        <title>Online Course Website</title>
     </head>
     <body>
         <c:url var="logoutUrl" value="/logout"/>
@@ -11,7 +11,7 @@
         </form>
 
         <h2>Lecture ${ticket.id}: <c:out value="${ticket.subject}" /></h2>
-        <security:authorize access="hasRole('ADMIN') or principal.username=='${ticket.customerName}'">            
+        <security:authorize access="hasRole('ADMIN') ">            
             [<a href="<c:url value="/ticket/edit/${ticket.id}" />">Edit</a>]
         </security:authorize>
         <security:authorize access="hasRole('ADMIN')">            

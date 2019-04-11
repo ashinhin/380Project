@@ -28,12 +28,15 @@
     </b:bean>    
 
     <http auto-config="true">
-        <intercept-url pattern="/ticket/list" access="permitAll" />
-        <intercept-url pattern="/user/**" access="hasRole('ADMIN')" />
+        
+        <intercept-url pattern="/user/list/**" access="hasRole('ADMIN')" />
+        <intercept-url pattern="/user/create/**" access="hasRole('ADMIN')" />
+        <intercept-url pattern="/user/delete/**" access="hasRole('ADMIN')" />
+        
         <intercept-url pattern="/ticket/edit/**" access="hasRole('ADMIN')" />
         <intercept-url pattern="/ticket/create/**" access="hasRole('ADMIN')" />
         <intercept-url pattern="/ticket/delete/**" access="hasRole('ADMIN')" />
-        <intercept-url pattern="/ticket/**" access="hasAnyRole('USER','ADMIN')" />
+        <intercept-url pattern="/ticket/view/**" access="hasAnyRole('USER','ADMIN')" />
         <form-login login-page="/login" authentication-failure-url="/login?error" />
         <logout logout-success-url="/login?logout"
                 invalidate-session="true"

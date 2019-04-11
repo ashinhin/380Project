@@ -1,8 +1,10 @@
 package ouhk.comps380f.controller;
 
 import java.io.IOException;
+import java.security.Principal;
 import javax.annotation.Resource;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -25,6 +27,8 @@ public class TicketUserController {
         model.addAttribute("ticketUsers", ticketUserRepo.findAll());
         return "listUser";
     }
+
+    
 
     public static class Form {
 
@@ -69,6 +73,20 @@ public class TicketUserController {
         );
         ticketUserRepo.save(user);
         return new RedirectView("/user/list", true);
+    }
+
+    @RequestMapping(value = "registration", method = RequestMethod.GET)
+    public ModelAndView reg() {
+        return new ModelAndView("registration", "ticketUser", new Form());
+    }
+
+    @RequestMapping(value = "registration", method = RequestMethod.POST)
+    public View reg(Form form) throws IOException {
+        TicketUser user = new TicketUser(form.getUsername(),
+                form.getPassword(), form.getRoles()
+        );
+        ticketUserRepo.save(user);
+        return new RedirectView("/ticket/list", true);
     }
 
     @RequestMapping(value = "delete/{username}", method = RequestMethod.GET)
