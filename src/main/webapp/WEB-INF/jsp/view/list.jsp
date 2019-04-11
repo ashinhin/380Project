@@ -10,11 +10,10 @@
             <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
         </form>
 
-        <h2>Lecture</h2>
-        <security:authorize access="hasRole('ADMIN')">    
-            <a href="<c:url value="/user" />">Manage User Accounts</a><br /><br />
+        <h2>Lecture</h2>   
+        <a href="<c:url value="/user" />">Manage User Accounts</a><br /><br />
         <a href="<c:url value="/ticket/create" />">Create a Material</a><br /><br />
-        </security:authorize>
+       
         <c:choose>
             <c:when test="${fn:length(ticketDatabase) == 0}">
                 <i>There are no material in the website.</i>
@@ -25,13 +24,8 @@
                     <a href="<c:url value="/ticket/view/${ticket.id}" />">
                         <c:out value="${ticket.subject}" /></a>
                     (Lecturer: <c:out value="${ticket.customerName}" />)
-                    <security:authorize access="hasRole('ADMIN') or
-                                        principal.username=='${ticket.customerName}'">
                         [<a href="<c:url value="/ticket/edit/${ticket.id}" />">Edit</a>]
-                    </security:authorize>
-                    <security:authorize access="hasRole('ADMIN')">            
                         [<a href="<c:url value="/ticket/delete/${ticket.id}" />">Delete</a>]
-                    </security:authorize>
                     <br /><br />
                 </c:forEach>
             </c:otherwise>

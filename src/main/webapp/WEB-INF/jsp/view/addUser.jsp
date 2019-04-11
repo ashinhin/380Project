@@ -10,7 +10,7 @@
     <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
 </form>
 
-<h2>Create a Student</h2>
+<h2>Create a Account:</h2>
 <form:form method="POST" enctype="multipart/form-data"
            modelAttribute="ticketUser">
     <form:label path="username">Username</form:label><br/>
@@ -18,8 +18,8 @@
     <form:label path="password">Password</form:label><br/>
     <form:input type="text" path="password" /><br/><br/>
     <form:label path="roles">Roles</form:label><br/>
-    <form:checkbox path="roles" value="ROLE_USER" />Student
-    <form:checkbox path="roles" value="ROLE_ADMIN" />Lecturer
+    <form:radiobutton  path="roles" value="ROLE_ADMIN" label="Lecturer"/><br/>
+    <form:radiobutton  path="roles" value="ROLE_USER" label="Student"/>
     <br /><br />
     <input type="submit" value="Add User"/>
 </form:form>
